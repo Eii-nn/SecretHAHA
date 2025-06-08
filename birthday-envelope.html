@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Birthday Envelope</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+  @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@400;600&display=swap');
+
+  body {
+    min-height: 100vh;
+    margin: 0;
+    background: linear-gradient(135deg, #a18cd1 0%, #fbc2eb 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Poppins', sans-serif;
+    overflow: hidden;
+  }
+
+  .envelope-container {
+    position: relative;
+    width: 340px;
+    height: 240px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    perspective: 800px;
+  }
+
+  .envelope {
+    position: relative;
+    width: 100%;
+    height: 180px;
+    background: #fff;
+    border-radius: 0 0 18px 18px;
+    box-shadow: 0 8px 32px rgba(161,140,209,0.18);
+    z-index: 1;
+    overflow: visible;
+  }
+
+  .envelope-flap {
+    position: absolute;
+    top: -90px;
+    left: 0;
+    width: 100%;
+    height: 90px;
+    background: linear-gradient(135deg, #fbc2eb 0%, #a6c1ee 100%);
+    clip-path: polygon(0 0, 100% 0, 50% 100%);
+    border-radius: 18px 18px 0 0;
+    box-shadow: 0 2px 12px rgba(161,140,209,0.10);
+    transform-origin: top center;
+    transition: transform 1s cubic-bezier(.68,-0.55,.27,1.55);
+    z-index: 3;
+  }
+
+  .envelope.open .envelope-flap {
+    transform: rotateX(-120deg);
+  }
+
+  .card {
+    position: absolute;
+    left: 50%;
+    bottom: 18px;
+    width: 90%;
+    min-height: 120px;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 24px rgba(161,140,209,0.18);
+    transform: translate(-50%, 40%) scale(0.96);
+    opacity: 0;
+    transition: 
+      transform 1s cubic-bezier(.68,-0.55,.27,1.55),
+      opacity 0.7s cubic-bezier(.68,-0.55,.27,1.55);
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 22px 18px 18px 18px;
+    text-align: center;
+    pointer-events: none;
+  }
+
+  .envelope.open .card {
+    transform: translate(-50%, -40%) scale(1.03);
+    opacity: 1;
+    pointer-events: auto;
+    /* Optional: subtle shadow for depth */
+    box-shadow: 0 8px 32px rgba(161,140,209,0.18), 0 2px 12px #fbc2eb33;
+  }
+
+  .card h1 {
+    font-family: 'Dancing Script', cursive;
+    font-size: 2em;
+    margin: 0 0 10px 0;
+    color: #a18cd1;
+    letter-spacing: 1px;
+    font-weight: 700;
+    text-shadow: 0 2px 8px #fbc2eb44;
+  }
+
+  .card p {
+    font-size: 1em;
+    color: #6d6a7c;
+    margin: 0 0 12px 0;
+    line-height: 1.5;
+  }
+
+  .card .emoji {
+    font-size: 1.5em;
+    margin-top: 8px;
+    animation: pop 1.2s infinite alternate;
+    display: inline-block;
+  }
+
+  @keyframes pop {
+    0% { transform: scale(1);}
+    100% { transform: scale(1.18);}
+  }
+
+  .open-btn {
+    position: absolute;
+    left: 50%;
+    bottom: -56px;
+    transform: translateX(-50%);
+    padding: 12px 32px;
+    background: linear-gradient(90deg, #a18cd1 0%, #fbc2eb 100%);
+    color: #fff;
+    border: none;
+    border-radius: 32px;
+    font-size: 1.1em;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 4px 18px #a18cd144;
+    transition: background 0.3s, transform 0.2s;
+    font-family: 'Poppins', sans-serif;
+    z-index: 20;
+  }
+  .open-btn:hover {
+    background: linear-gradient(90deg, #fbc2eb 0%, #a18cd1 100%);
+    transform: translateX(-50%) scale(1.05);
+  }
+
+  /* Confetti */
+  .confetti-piece {
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    opacity: 0.85;
+    pointer-events: none;
+    z-index: 100;
+    animation: confetti-fall 1.2s linear forwards;
+  }
+  @keyframes confetti-fall {
+    0% { opacity: 1; transform: translateY(0) scale(1);}
+    80% { opacity: 1;}
+    100% { opacity: 0; transform: translateY(120px) scale(1.2);}
+  }
+
+  /* Responsive */
+  @media (max-width: 500px) {
+    .envelope-container { width: 98vw; height: 180px;}
+    .envelope { height: 120px;}
+    .card { font-size: 0.95em;}
+    .open-btn { font-size: 1em; padding: 10px 18px;}
+  }
+  </style>
+</head>
+<body>
+  <div class="envelope-container">
+    <div class="envelope" id="envelope">
+      <div class="envelope-flap"></div>
+      <div class="clickedas" style="margin-top: 32px; text-align: center;"> <a href="lastpage.html">click me for a surprise</a></div>
+      <div class="card" id="card">
+        <h1>Happy Birthday!</h1>
+        <p>Wishing you a greatt dayy daee! not just today but if possible almost everday!! HHAHAHAH. Of course don't change ur personality I'm sure you will be fine anywhere. Wishing you
+        always for the best and stayy healthyy daee!! katug na sayo sugod pls! chariz HAHAHAHAH Enjoyy ur dayy daee!! 🫶</p>
+        <span class="emoji">🎂🎈🎉</span>
+      </div>
+    </div>
+    <button class="open-btn" id="openBtn" aria-label="Open Envelope">Open Envelope</button>
+  </div>
+  <script>
+    const envelope = document.getElementById('envelope');
+    const btn = document.getElementById('openBtn');
+    btn.addEventListener('click', function() {
+      envelope.classList.toggle('open');
+      btn.textContent = envelope.classList.contains('open') ? 'Close Envelope' : 'Open Envelope';
+      if (envelope.classList.contains('open')) showConfetti();
+    });
+
+    function showConfetti() {
+      const colors = ['#a18cd1', '#fbc2eb', '#fbc2eb', '#fff', '#a6c1ee', '#fbc2eb'];
+      for (let i = 0; i < 18; i++) {
+        const conf = document.createElement('div');
+        conf.className = 'confetti-piece';
+        conf.style.background = colors[Math.floor(Math.random()*colors.length)];
+        conf.style.left = (50 + (Math.random()-0.5)*120) + 'px';
+        conf.style.top = '40px';
+        conf.style.transform = `scale(${0.8 + Math.random()*0.7})`;
+        conf.style.animationDelay = (Math.random()*0.3) + 's';
+        document.querySelector('.envelope-container').appendChild(conf);
+        setTimeout(()=>conf.remove(), 1400);
+      }
+    }
+  </script>
+</body>
+</html>

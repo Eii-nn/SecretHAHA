@@ -1,0 +1,54 @@
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>pa choy2</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <style>
+    .text-lg {
+      text-align: center;
+      margin-top: 30px;
+      font-family: "Courier";
+      color: #0ae473;
+      font-size: 20px;
+    }
+  </style>
+  <body
+    class="flex flex-col items-center justify-center min-h-screen bg-green-100"
+  >
+    <div class="text-center mb-4" id="valentineQuestion">
+      <b class="text-lg"> A simple cat greeting u a HAPPY BIRTHDAY! 😺 </b>
+    </div>
+    <img
+      alt="A cute cat with a heart-shaped balloon wishing Happy Valentine's Day"
+      class="rounded-lg mb-4"
+      height="300"
+      src="funny-cat.gif"
+      width="300"
+    />
+    <button
+      class="answerButton bg-red-500 text-white py-2 px-4 rounded-lg hover:bg-red-700 transition"
+      onclick="location.href='birthday-envelope.html'"
+    >
+      Proceed
+    </button>
+    <script>
+      document
+        .getElementById("noButton")
+        .addEventListener("click", function () {
+          var yesButton = document.querySelector(
+            'button[onclick*="birthday.html"]'
+          );
+          var currentFontSize = parseInt(
+            window.getComputedStyle(yesButton).fontSize
+          );
+          yesButton.style.fontSize = currentFontSize + 10 + "px"; // Increase font size by 10px
+        });
+    </script>
+  </body>
+</html>
